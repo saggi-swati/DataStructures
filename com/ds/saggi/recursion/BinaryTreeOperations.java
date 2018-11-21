@@ -27,8 +27,10 @@ public class BinaryTreeOperations {
     public static void main(String args[]) {
         BinaryTree tree = createBinaryTree();
         System.out.println("Maximum value in binary tree is : "+searchMax(tree.root));
-        System.out.println("Level order traversal for a binary tree : "+searchMax(tree.root));
+        System.out.println("\nLevel order traversal for a binary tree using queue : ");
         levelOrderTraversalUsingQueue(tree.root);
+        System.out.println("\nLevel order traversal for a binary tree using recursion");
+        levelOrderTraversalUsingRecursion(tree.root);
     }
 
     /**
@@ -69,6 +71,38 @@ public class BinaryTreeOperations {
                 queue.add(node.right);
             }
         }
+    }
+
+    /**
+     * This method provides a level order traversal for any Binary tree represented by its root node.
+     */
+    private static void levelOrderTraversalUsingRecursion(Node root) {
+        if(root == null) return;
+        int height = getHeight(root);
+        System.out.println("Height of the tree is : " + height);
+        for(int i=1;i<=height;i++)
+            depthLevelTraversal(root, i);
+    }
+
+    private static void depthLevelTraversal(Node root, int h) {
+        if(h == 1) {
+            System.out.print( root.value + " ");
+            return;
+        }
+        depthLevelTraversal(root.left, h-1);
+        depthLevelTraversal(root.right, h-1);
+    }
+
+    private static int getHeight(Node root) {
+        if(root == null) return 0;
+
+        int leftHeight = getHeight(root.left);
+        int rightHeight = getHeight(root.right);
+
+        if(leftHeight > rightHeight)
+            return (leftHeight + 1);
+        else
+            return (rightHeight + 1);
     }
 
     private static int max = Integer.MIN_VALUE;
