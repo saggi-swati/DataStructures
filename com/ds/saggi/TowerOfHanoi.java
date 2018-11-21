@@ -1,6 +1,9 @@
 package com.ds.saggi;
 
 /**
+ * Time complexity is O(2^n-1)
+ * best case - n=1 - O(1)
+ *
  * Implementation for Tower of Hanoi problem <br>
  * Tower of Hanoi is a mathematical puzzle where we have three rods and n disks. The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:<br>
  * 1) Only one disk can be moved at a time.<br>
