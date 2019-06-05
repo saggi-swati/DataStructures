@@ -1,4 +1,6 @@
-package com.ds.saggi;
+package ds.saggi.in.datastructures;
+
+import java.util.Stack;
 
 /**
  * Time complexity is O(2^n-1)
@@ -32,5 +34,40 @@ public class TowerOfHanoi {
         towerOfHanoi(n-1, fromRod, auxRod, toRod);
         System.out.println("Moving from tower " + fromRod + " to tower " + toRod);
         towerOfHanoi(n-1, auxRod, toRod, fromRod);
+    }
+
+    private static void maxRectangle(int[] hist) {
+
+        int n = hist.length;
+        int max = 0;
+        int area = 0;
+
+        Stack<Integer> s = new Stack<>();
+
+        int i = 0;
+
+        while(i < n) {
+            if(s.isEmpty() || hist[s.peek()] <= hist[i]) {
+                s.push(i++);
+            } else {
+                int p = s.pop();
+
+                area = hist[p]*(s.isEmpty()?i:i-s.peek()-1);
+
+                if(area > max)
+                    max = area;
+            }
+        }
+
+        while(!s.isEmpty()) {
+            int p = s.pop();
+
+            area = hist[p]*(s.isEmpty()?i:i-s.peek()-1);
+
+            if(area > max)
+                max = area;
+        }
+
+        System.out.println("TowerOfHanoi.maxRectangle : " + area);
     }
 }

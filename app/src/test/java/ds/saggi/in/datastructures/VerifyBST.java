@@ -1,4 +1,4 @@
-package com.ds.saggi;
+package ds.saggi.in.datastructures;
 
 /**
  * This class constructs below tree and validates if the binary tree is a Binary search tree.
@@ -43,7 +43,9 @@ public class VerifyBST {
         tree.root.left.right = new Node(7);
         tree.root.right = new Node(10);
 
-        boolean isBST = checkIfBST(tree.root);
+        System.out.println("VerifyBST.main" + isBalanced(tree.root));
+
+        /*boolean isBST = checkIfBST(tree.root);
         System.out.println("If the tree is Binary tree : " + isBST);
         if(isBST) {
             System.out.println("\nPre-order traversal : ");
@@ -52,7 +54,7 @@ public class VerifyBST {
             inOrderTraversal(tree.root);
             System.out.println("\nPost-order traversal : ");
             postOrderTraversal(tree.root);
-        }
+        }*/
     }
 
     private static boolean checkIfBST(Node node) {
@@ -89,4 +91,27 @@ public class VerifyBST {
         postOrderTraversal(root.right);
         System.out.print(root.value + " ");
     }
+
+    private static boolean isBalanced(Node root) {
+        if (root == null) return true;
+
+        int leftH = 0;
+        int rightH = 0;
+
+        if (root.left != null)
+            leftH = height(root.left);
+        if (root.right != null)
+            rightH = height(root.right);
+
+        if (Math.abs(rightH - leftH) <= 1)
+            return isBalanced(root.right) && isBalanced(root.left);
+
+        return false;
+    }
+
+    private static int height(Node root) {
+        if (root == null) return 0;
+        return Math.max(height(root.left), height(root.right)) + 1;
+    }
+
 }

@@ -1,4 +1,4 @@
-package com.ds.saggi.recursion
+package ds.saggi.in.datastructures.recursion;
 
 /**
 * This class validates if an array is sorted using recursion.
